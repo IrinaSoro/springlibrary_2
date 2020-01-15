@@ -1,0 +1,70 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.2.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java'
+    id 'war'
+}
+
+/*dependencies {
+    classpath ("org.springframework.boot:spring-boot-gradle-plugin:${'org.springframework.boot'}")
+}*/
+group = 'ru.javabegin.training.library'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+
+    //репозиторий для скачивания зависимостей primefaces
+    maven{
+        url 'http://repository.primefaces.org'
+    }
+}
+
+ext['hibernate.version'] = '5.4.2.Final'
+
+
+configurations{
+    providedRunTime
+
+    compile.exclude module: 'spring-boot-starter-tomcat'
+}
+
+dependencies {
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa:+') //чтобы работать с hibernate с помощью spring
+    implementation('org.springframework.boot:spring-boot-starter-web:+') // создать веб-контейнер, спринг mvc
+    implementation('org.springframework.boot:spring-boot-starter-security:+') //безопасность веб-приложения; авторизация, аутентификация
+    implementation('org.springframework.boot:spring-boot-starter-actuator:+') //анализ различный run time данных во время работы приложения; служебные данные во время работы приложения (бины, endpoints и пр.)
+    implementation('org.springframework.boot:spring-boot-starter-aop:+') // для использования аспектов (отлавливание ошибок, действий пользователя - для отображения сообщений)
+    implementation('org.springframework.boot:spring-boot-starter-data-rest:+') // автоматическая генерация restful сервисов
+   // implementation group: 'org.glassfish.jersey.core', name: 'jersey-server', version: '2.17'
+
+    implementation 'org.projectlombok:lombok:+' // чтобы не писать лишний код при создании entity классов; уменьшение кода
+    implementation 'com.google.guava:guava:+' //вспомогательная гугл.библиотека
+
+    //implementation group: 'mysql', name: 'mysql-connector-java', version: '5.1. 14' // драйвер для соединения с БД
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.15'
+    providedCompile 'javax:javaee-api:7.0'
+
+
+    providedCompile 'org.projectlombok:lombok:1.18.6' // уменьшение кода
+    annotationProcessor 'org.projectlombok:lombok:1.18.6'
+
+    //frontend
+    implementation 'org.primefaces:primefaces:6.0' //внешние компоненты для отображения данных , кнопки..
+    implementation group: 'javax.el', name: 'javax.el-api', version: '3.0.0' // чтоюы работать с выражениями expression language на страницах, java classes,
+    implementation 'org.omnifaces:omnifaces:2.5.1' // библиотека утилит для JSF (по разным настройкам, добавление удобств в проект)
+    implementation 'net.bootsfaces:bootsfaces:1.0.0'
+
+    implementation 'commons-io:commons-io:+'// для загрузки файлов в приложении
+    implementation 'commons-fileupload:commons-fileupload:+'
+
+    implementation('org.primefaces.themes:bootstrap:1.0.10') // отсюда будем брать некоторые стили, которые не будут в css
+
+
+
+
+
+}
+

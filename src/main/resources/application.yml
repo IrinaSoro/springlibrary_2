@@ -1,0 +1,51 @@
+# эти параметры стали deprecated, используем вместо них класс SecurityConfig
+#management:
+#    security:
+#      enabled: false
+#security:
+# basic:
+#     enabled:false
+
+#spring:
+ # datasource:  # то через что приложение соединяется с БД
+  #     default-catalog: library # название каталога в mysql workbench
+  #     jndi-name: jdbc/Library # то что будем создавать в glassfish
+  #jpa: #настройки hibernate
+   #     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect # берем из документации (движок innodbdialect)
+    #    properties:
+     #     hibernate:
+      #      current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext # пока спринг контейнер будет живой для нашего приложения сессия hibernate тоже будет держаться
+       #     dialect: org.hibernate.dialect.MySQL5Dialect
+        #    format_sql: true        #show-sql: true
+
+
+spring:
+  datasource: # то через что приложение соединяется с БД
+    default-catalog: library
+   # url: jdbc:mysql://localhost:3306/library # название каталога в mysql workbench
+    jndi-name: jdbc/Library # то что будем создавать в glassfish
+   # username: root
+    #password: 1234si
+   # driver-class-name: com.mysql.jdbc.Driver
+  jpa: #настройки hibernate
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect # берем из документации (движок innodbdialect)
+    properties:
+      hibernate:
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext # пока спринг контейнер будет живой для нашего приложения сессия hibernate тоже будет держаться
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        format_sql: true
+    show-sql: true
+  data:
+     rest:
+       base-path: /repo
+
+logging:
+  file: "c:\temp\app.log pattern: %d{HH:mm:ss} %-5p [%c] - %m%n"
+  level:
+    ROOT: error
+    org.springframework: warn
+    javax.faces: warn
+    org.omnifaces: warn
+    org.springframework.security: warn
+    org.hibernate: warn
+    org.hibernate.type.descriptor.sql: warn
