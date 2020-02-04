@@ -21,11 +21,11 @@
 
 spring:
   datasource: # то через что приложение соединяется с БД
-    default-catalog: library
-   # url: jdbc:mysql://localhost:3306/library # название каталога в mysql workbench
+    #default-catalog: library
+    url: jdbc:mysql://localhost:3306/library # название каталога в mysql workbench
     jndi-name: jdbc/Library # то что будем создавать в glassfish
-   # username: root
-    #password: 1234si
+    username: root
+    password: 1234si
    # driver-class-name: com.mysql.jdbc.Driver
   jpa: #настройки hibernate
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect # берем из документации (движок innodbdialect)

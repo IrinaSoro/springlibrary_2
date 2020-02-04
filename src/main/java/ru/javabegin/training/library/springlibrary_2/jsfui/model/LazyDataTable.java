@@ -23,13 +23,13 @@ public class LazyDataTable<T> extends LazyDataModel<T> {
 
     public LazyDataTable(AbstractController<T> abstractController) {
         this.abstractController = abstractController;
-    }
+    } //abstractController хранит ссылку на переданный контроллер
 
 
     @Override
-    public List<T> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+    public List<T> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) { //вызывается, когда делаем какие-то манипуляции на странице JSF (н: выбираем, сколько показать книг на странице)
 
-        int pageNumber = first / pageSize;//
+        int pageNumber = first / pageSize;// считываем номер страницы
 
         Sort.Direction sortDirection = Sort.Direction.ASC;// по-умолчанию - сортировка по возрастанию
 
@@ -42,11 +42,11 @@ public class LazyDataTable<T> extends LazyDataModel<T> {
             }
         }
 
-        Page<T> searchResult = abstractController.search(pageNumber, pageSize, sortField, sortDirection);
+        Page<T> searchResult = abstractController.search(pageNumber, pageSize, sortField, sortDirection); //вызывает сервисный уровень и возвращает результат в searchResult
 
-        this.setRowCount((int) searchResult.getTotalElements());
+        this.setRowCount((int) searchResult.getTotalElements()); //setRowCount -указываем, сколько строк было найдено, чтобы (он) правильно распределил все служебные данные; вызываем getTotalElements метод у searchResult
 
-        return searchResult.getContent();
+        return searchResult.getContent(); //возвращаем List типа Book
     }
 
 

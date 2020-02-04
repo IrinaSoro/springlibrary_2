@@ -69,14 +69,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { // класс
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/index.xhtml")
                 .deleteCookies("JSESSIONID", "SPRING_SECURITY_REMEMBER_ME_COOKIE")
-                .invalidateHttpSession(true)
-                .and()
+                .invalidateHttpSession(true);
+               /* .and()
 
                 .requiresChannel().anyRequest().requiresSecure(). // все запросы будут перенаправляться в HTTPS протокол
                 and()
                 .portMapper()
                 .http(8080).mapsTo(8181)// порты для HTTP и HTTPS
-                ;
+                ;*/
 
 
 

@@ -56,7 +56,7 @@ public class BookController extends AbstractController<Book> {
     private GenreController genreController;
 
     private Book selectedBook; // ссылка на текущую книгу (которую редактируют, хотят удалять и пр.) - т.е. над какой книгой в данный момент производим действие
-    private LazyDataTable<Book> lazyModel; // класс-утилита, которая помогает выводить данные постранияно (работает в паре с компонентами на странице JSF)
+    private LazyDataTable<Book> lazyModel; // класс-утилита, которая помогает выводить данные постранично (работает в паре с компонентами на странице JSF)
 
     private byte[] uploadedImage; // сюда будет сохраняться загруженная пользователем новая обложка (при редактировании или при добавлении книги)
     private byte[] uploadedContent; // сюда будет сохраняться загруженный пользователем PDF контент (при редактировании или при добавлении книги)
@@ -65,13 +65,13 @@ public class BookController extends AbstractController<Book> {
     private List<Book> topBooks;// хранит полученные ТОП книги (может использоваться наприемр для получения изображений книги)
 
     private String searchText; // введенный текст для поиска
-    private long selectedGenreId; // выбранынй жано для поиска
+    private long selectedGenreId; // выбранынй жанр для поиска
 
 
-    @PostConstruct
+    @PostConstruct //после того, как создан ManagedBean, будет автоматически вызываться метод init
     public void init() {
         lazyModel = new LazyDataTable(this);
-    }
+    } //this это ссылка на текущий контроллер
 
 
 
@@ -99,12 +99,12 @@ public class BookController extends AbstractController<Book> {
     public Page<Book> search(int pageNumber, int pageSize, String sortField, Sort.Direction sortDirection) {
 
 
-        if (sortField == null) {
-            sortField = "name";
+        if (sortField == null) { //если не указано поле сортировки
+            sortField = "name"; // берем поле "name"
         }
 
         if (searchType == null){
-            bookPages = bookDao.getAll(pageNumber, pageSize, sortField, sortDirection);
+            bookPages = bookDao.getAll(pageNumber, pageSize, sortField, sortDirection); //отображаем все книги постранично, если не указан тип поиска
         }else {
 
             switch (searchType) {
