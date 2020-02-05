@@ -45,7 +45,7 @@ public class BookService implements BookDAO {
     @Override
     public Page<Book> search(int pageNumber, int pageSize, String sortField, Sort.Direction sortDirection, String... searchString) {
         // чтобы название метода не было слишком длинным - можно использовать @Query c HQL (если больше 2-х переменных)
-        return (Page<Book>) bookRepository.findByNameContainingIgnoreCaseOrAuthorFioContainingIgnoreCaseOrderByName(searchString[0], searchString[0], PageRequest.of (pageNumber, pageSize, Sort.by(sortDirection, sortField)));
+        return bookRepository.findByNameContainingIgnoreCaseOrAuthorFioContainingIgnoreCaseOrderByName(searchString[0], searchString[0], PageRequest.of (pageNumber, pageSize, Sort.by (sortDirection, sortField)));
     }
 
 

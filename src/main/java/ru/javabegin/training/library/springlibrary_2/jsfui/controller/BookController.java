@@ -236,10 +236,10 @@ public class BookController extends AbstractController<Book> {
 
 
 
-
-    public void showBooksByGenre(long genreId){
+   //поиск по определенному жанру
+    public void showBooksByGenre(long selectedGenreId){
         searchType = SearchType.SEARCH_GENRE;
-        this.selectedGenreId = genreId;
+        this.selectedGenreId = selectedGenreId;
     }
 
     public void showAll(){

@@ -1,7 +1,6 @@
 package ru.javabegin.training.library.springlibrary_2.spring.repository;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -19,7 +18,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     // поиск книг по названию или автору
     // если имя метода получается слишком длинным - можно использовать @Query с HQL
-    List<Book> findByNameContainingIgnoreCaseOrAuthorFioContainingIgnoreCaseOrderByName(String name, String fio, PageRequest of);
+    Page<Book> findByNameContainingIgnoreCaseOrAuthorFioContainingIgnoreCaseOrderByName(String name, String fio, Pageable pageable );
 
     @Query("select new ru.javabegin.training.library.springlibrary_2.domain.Book(b.id, b.name, b.pageCount, b.isbn, b.genre, b.author, b.publisher, b.publishYear, b.image, b.descr, b.viewCount, b.totalRating, b.totalVoteCount, b.avgRating) from Book b")
     Page<Book> findAllWithoutContent(Pageable pageable); //возвращает список книг с постраничностью
