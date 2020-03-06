@@ -33,7 +33,7 @@ public class FacesConfig {
         return registrationBean;
     }
 
-
+    //чтобы загружать двоичные данные на странице
     @Bean
     public ServletRegistrationBean servletRegistrationBean(MultipartConfigElement multipartConfigElement) {
         FacesServlet servlet = new FacesServlet();

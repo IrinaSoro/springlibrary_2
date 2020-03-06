@@ -54,7 +54,7 @@ public class Book {
     private String name;
 
     @JsonIgnore // не добавлять значение в Json
-    @Lob //напрмер, чтобы реализовать лению загрузгу
+    @Lob //указание на большие объекты
     @Column(updatable = false)
     private byte[] content; //byte - двоичное значение, которое потом буем конвертировать в нужный формат
 

@@ -11,6 +11,8 @@
 
         <locale-config>
             <default-locale>ru</default-locale>
+            <supported-locale>ru</supported-locale>
+            <supported-locale>en</supported-locale>
         </locale-config>
 
         <resource-bundle>

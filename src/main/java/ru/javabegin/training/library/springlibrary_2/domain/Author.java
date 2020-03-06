@@ -15,7 +15,7 @@ import java.util.List;
 
 
 //JPA
-@Entity // все поля класса будут автоматически связаны со столбцами таблицы
+@Entity //класс является сущностью; все поля класса будут автоматически связаны со столбцами таблицы
 @Table (catalog = "library")
 @EqualsAndHashCode(of = "id") //создает хэш-код по id и сравнивает по id тоже благодаря lombok библиотеки
 @Getter @Setter //благодаря библиотеки lombok мы можем сократить код н: просто указать аннотации на геттер-сеттер, а не прописывать их
@@ -32,7 +32,7 @@ public class Author {
 
     private Date birthday;
 
-    @JsonIgnore
+    @JsonIgnore //для избежания рекурсии (зацикливания) (т.к.у одного автора может быть несколько книг) при получении json. В json , например, нам не нужны книги автора, только сам автор.
     @Basic(fetch =FetchType.LAZY)
     @OneToMany(mappedBy = "author")
     private List<Book> books;
